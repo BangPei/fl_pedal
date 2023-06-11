@@ -1,29 +1,22 @@
+import 'package:fl_pedal/main_layout.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+// import 'package:go_router/go_router.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends MainLayout {
   const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  HomeScreenState createState() => HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class HomeScreenState extends MainLayoutState<HomeScreen> {
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Home Screen')),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            ElevatedButton(
-              onPressed: () => context.go('/details'),
-              child: const Text('Go to the Details screen'),
-            ),
-          ],
-        ),
-      ),
+  Widget body() {
+    return Text(
+      "Headline",
+      style: Theme.of(context).textTheme.displayLarge,
+      overflow: TextOverflow.visible,
+      softWrap: false,
     );
   }
 }

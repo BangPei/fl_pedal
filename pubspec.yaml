@@ -30,7 +30,10 @@ environment:
 dependencies:
   go_router: ^7.1.1
   url_strategy: ^0.2.0
-  flutter_tesseract_ocr: ^0.4.23
+  # flutter_tesseract_ocr: ^0.4.23
+  collapsible_sidebar: ^2.0.5+1
+  flutter_bootstrap_widgets: ^1.1.0
+  flutter_bootstrap: ^2.0.0
   flutter:
     sdk: flutter
 
