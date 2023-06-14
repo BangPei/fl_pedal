@@ -1,9 +1,16 @@
-import 'package:fl_pedal/main_layout.dart';
+import 'package:fl_pedal/main_layout/main_layout.dart';
 import 'package:flutter/material.dart';
 // import 'package:go_router/go_router.dart';
 
+// ignore: must_be_immutable
 class HomeScreen extends MainLayout {
-  const HomeScreen({super.key});
+  HomeScreen({Key? key})
+      : super(
+          key: key,
+          title: "Dashboard",
+          menu: "Dashboard",
+          showSubtitle: false,
+        );
 
   @override
   HomeScreenState createState() => HomeScreenState();

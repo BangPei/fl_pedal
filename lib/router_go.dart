@@ -8,7 +8,7 @@ class RouteNavigation {
     GoRoute(
       path: '/',
       builder: (BuildContext context, GoRouterState state) {
-        return const HomeScreen();
+        return HomeScreen();
       },
       routes: <RouteBase>[
         GoRoute(
@@ -19,12 +19,9 @@ class RouteNavigation {
               child: const DetailsScreen(),
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
-                // Change the opacity of the screen using a Curve based on the the animation's
-                // value
                 return FadeTransition(
                   opacity: CurveTween(curve: Curves.easeInOutCirc)
                       .animate(animation),
-                  // child: const DetailsScreen(),
                 );
               },
             );
