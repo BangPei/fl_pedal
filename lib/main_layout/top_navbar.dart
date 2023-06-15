@@ -10,11 +10,14 @@ class TopNavbar extends StatelessWidget {
         color: Colors.white,
         borderRadius: const BorderRadius.all(Radius.circular(6)),
         boxShadow: [
-          BoxShadow(color: Colors.grey.withOpacity(0.3), spreadRadius: 1)
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.3),
+            spreadRadius: 1,
+          )
         ],
       ),
       padding: const EdgeInsets.all(8),
-      height: 60,
+      height: 70,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
