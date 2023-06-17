@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class LeftListTile extends StatelessWidget {
+class LeftListTile extends StatefulWidget {
   final String title;
   final bool? visibility;
   final bool? selected;
@@ -17,31 +17,67 @@ class LeftListTile extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<LeftListTile> createState() => _LeftListTileState();
+}
+
+class _LeftListTileState extends State<LeftListTile> {
+  bool isHover = false;
+  @override
   Widget build(BuildContext context) {
     return Visibility(
-      visible: visibility ?? true,
-      child: ListTile(
-        leading: icon == null
-            ? const SizedBox.shrink()
-            : Icon(
-                icon,
-                color: const Color.fromRGBO(238, 182, 172, 1),
-                size: 25,
-              ),
-        selectedColor: const Color.fromRGBO(218, 98, 74, 1),
-        selected: selected ?? false,
-        hoverColor: Colors.amberAccent,
-        title: SelectableText(
-          title,
-          // style: const TextStyle(
-          //   color: Color.fromRGBO(133, 141, 147, 1),
-          // ),
+      visible: widget.visibility ?? true,
+      replacement: MouseRegion(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 20.0),
+          child: Icon(
+            widget.icon,
+            color: (isHover || (widget.selected ?? false))
+                ? Colors.blue[400]
+                : const Color.fromRGBO(238, 182, 172, 1),
+            size: 22,
+          ),
         ),
-        // tileColor: const Color(0xFF2C3C56).withOpacity(0.8),
-        // hoverColor: const Color(0xFF2C3C56).withOpacity(0.8),
-        // selectedColor: const Color(0xFF2C3C56).withOpacity(0.8),
-        // focusColor: const Color(0xFF2C3C56).withOpacity(0.8),
-        onTap: onTap,
+      ),
+      child: MouseRegion(
+        cursor: SystemMouseCursors.click,
+        onEnter: (event) {
+          isHover = true;
+          setState(() {});
+        },
+        onExit: (event) {
+          isHover = false;
+          setState(() {});
+        },
+        child: InkWell(
+          onTap: widget.onTap,
+          child: Container(
+            color: (widget.selected ?? false)
+                ? const Color.fromARGB(255, 241, 198, 198).withOpacity(0.2)
+                : Colors.white,
+            child: ListTile(
+              leading: widget.icon == null
+                  ? const SizedBox.shrink()
+                  : Icon(
+                      widget.icon,
+                      color: (isHover || (widget.selected ?? false))
+                          ? Colors.blue[400]
+                          : const Color.fromRGBO(238, 182, 172, 1),
+                      size: 22,
+                    ),
+              selectedColor: const Color.fromRGBO(218, 98, 74, 1),
+              selected: widget.selected ?? false,
+              title: SelectableText(
+                widget.title,
+                style: TextStyle(
+                  fontSize: 13,
+                  color: (isHover || (widget.selected ?? false))
+                      ? Colors.blue[400]
+                      : const Color.fromARGB(255, 78, 78, 78),
+                ),
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
