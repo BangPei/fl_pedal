@@ -26,16 +26,14 @@ class _LeftListTileState extends State<LeftListTile> {
   Widget build(BuildContext context) {
     return Visibility(
       visible: widget.visibility ?? true,
-      replacement: MouseRegion(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20.0),
-          child: Icon(
-            widget.icon,
-            color: (isHover || (widget.selected ?? false))
-                ? Colors.blue[400]
-                : const Color.fromRGBO(238, 182, 172, 1),
-            size: 22,
-          ),
+      replacement: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 20.0),
+        child: Icon(
+          widget.icon,
+          color: (isHover || (widget.selected ?? false))
+              ? Colors.blue[400]
+              : const Color.fromRGBO(238, 182, 172, 1),
+          size: 22,
         ),
       ),
       child: MouseRegion(

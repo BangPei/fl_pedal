@@ -7,8 +7,8 @@ class Api {
 
   static restClient() async {
     final dio = Dio();
-    dio.interceptors.clear();
-    dio.interceptors.add(DioInterceptors(dio));
-    return RestClient(dio, baseUrl: baseUrl);
+    // dio.interceptors.clear();
+    // dio.interceptors.add(DioInterceptors(dio));
+    // return RestClient(dio, baseUrl: baseUrl);
   }
 }

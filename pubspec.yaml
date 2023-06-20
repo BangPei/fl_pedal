@@ -39,6 +39,7 @@ dependencies:
   retrofit: ^4.0.1
   font_awesome_flutter: ^10.4.0
   jiffy: ^6.2.1
+  # just_the_tooltip: ^0.0.12
   flutter:
     sdk: flutter
 

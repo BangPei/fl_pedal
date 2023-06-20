@@ -4,20 +4,25 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LeftMenu extends StatefulWidget {
-  const LeftMenu({super.key});
+  final double menuSize;
+  final bool showMenu;
+  final Function(double) onPressed;
+  const LeftMenu(
+      {super.key,
+      required this.menuSize,
+      required this.onPressed,
+      required this.showMenu});
 
   @override
   State<LeftMenu> createState() => _LeftMenuState();
 }
 
 class _LeftMenuState extends State<LeftMenu> {
-  double _size = 250;
-
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      width: _size,
-      duration: const Duration(milliseconds: 500),
+      width: widget.menuSize,
+      duration: const Duration(milliseconds: 200),
       height: double.infinity,
       decoration: const BoxDecoration(
         color: Color.fromRGBO(255, 255, 255, 1),
@@ -41,15 +46,13 @@ class _LeftMenuState extends State<LeftMenu> {
       ),
       child: Column(
         children: [
-          HeaderMenu(size: _size),
+          HeaderMenu(size: widget.menuSize),
           const Divider(height: 20, color: Colors.transparent),
-          Expanded(child: MainMenu(size: _size)),
+          Expanded(child: MainMenu(size: widget.menuSize)),
           Footer(
-            size: _size,
-            onPressed: (size) {
-              _size = size;
-              setState(() {});
-            },
+            showMenu: widget.showMenu,
+            size: widget.menuSize,
+            onPressed: widget.onPressed,
           ),
         ],
       ),
@@ -249,8 +252,13 @@ class MainMenu extends StatelessWidget {
 
 class Footer extends StatefulWidget {
   final double size;
+  final bool showMenu;
   final Function(double) onPressed;
-  const Footer({super.key, required this.onPressed, required this.size});
+  const Footer(
+      {super.key,
+      required this.onPressed,
+      required this.size,
+      required this.showMenu});
 
   @override
   State<Footer> createState() => _FooterState();
@@ -302,7 +310,9 @@ class _FooterState extends State<Footer> {
                   widget.onPressed(_size);
                 });
               },
-              icon: const Icon(FontAwesomeIcons.bars),
+              icon: Icon(widget.showMenu
+                  ? FontAwesomeIcons.bars
+                  : FontAwesomeIcons.xmark),
               color: const Color.fromRGBO(218, 98, 74, 1),
             ),
           ),
